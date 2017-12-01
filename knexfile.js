@@ -1,5 +1,5 @@
 
-const config = require('../../config');
+const config = require('./src/Infrastructure/config');
 const connectionString = config.connectionString;
 
 module.exports = {
