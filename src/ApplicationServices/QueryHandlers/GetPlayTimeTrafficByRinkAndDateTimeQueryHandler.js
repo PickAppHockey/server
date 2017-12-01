@@ -30,7 +30,7 @@ function GetPlayTimeTrafficByRinkAndDateTimeQueryHandler(repo, mapper){
               
                 let startTime = moment(startDateTime).add(i*4,"hours");
                 let endTime = moment(startTime).add(4,"hours");
-                let traffic = utilities.GetPlayTimesTraffic(playTimeDtosInDay, startTime.toDate(), endTime).toDate();
+                let traffic = utilities.GetPlayTimesTraffic(playTimeDtosInDay, startTime.toDate(), endTime.toDate());
                 let qualityAdjustedTraffic = utilities.getQualityAdjustedTraffic(traffic, startTime, endTime);
                 let label =  moment(startTime, ["h A"]).format("HH");
                 
