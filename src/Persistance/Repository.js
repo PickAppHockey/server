@@ -1,4 +1,4 @@
-const context = require('../Infrastructure/Abstractions/ORM/context');
+const context = require('../Infrastructure/Abstractions/ORM/Context');
 
 function Repository(model){
     this.table = model;
