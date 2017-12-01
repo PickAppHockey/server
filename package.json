@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run migrations && node server.js",
+    "start": "npm run migrations && node src/server.js",
     "migrations": "knex migrate:latest --knexfile src/Infrastructure/Abstractions/ORM/knexfile.js"
   },
   "keywords": [],
