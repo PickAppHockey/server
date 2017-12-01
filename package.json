@@ -1,0 +1,25 @@
+{
+  "name": "ShinnyApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run migrations && node server.js",
+    "migrations": "knex migrate:latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "file:node_modules\\body-parser",
+    "bookshelf": "^0.11.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "inversify": "^4.5.2",
+    "knex": "^0.14.1",
+    "moment": "^2.19.3",
+    "pg": "^7.4.0",
+    "reflect-metadata": "^0.1.10",
+    "uuid": "^3.1.0"
+  }
+}
