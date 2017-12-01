@@ -1,7 +1,6 @@
 //player id "f052b850-d202-11e7-9c5b-23b6fa98e7d8"
 //rink   id "26666e10-d216-11e7-8ed2-b510951af1a4"
 //playtime id ""
-const Rink = require("../Domain/Rink");
 
 const Boostrapper = require('./Bootstrapper');
 const RegisterPlayerCommand = require('shared/Contracts/Commands/RegisterPlayerCommand');
@@ -33,7 +32,37 @@ const QueryProcessor = require('./MessengerServices/QueryProcessor');
 
 Boostrapper.registerServices(Boostrapper.container);
 
+const Rink = require("../Domain/Rink");
+const request = require('request');
+let key = "AIzaSyBZFAMef8RWEOzQ0zjaKUIDdOgVhAofLBI";
+let query = "outdoor+rinks+Toronto";
+path = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key="+ key;
+let repo = Boostrapper.container.get("RinkRepository");
 
+request(path, function (error, response, body) {
+    let rinks = JSON.parse(body).results;
+
+    rinks.forEach(function(elem) {
+        let rink = new Rink(uuidv1());        
+        rink.name = elem.name;
+        rink.latitude = elem.geometry.location.lat
+        rink.longitute = elem.geometry.location.lng
+        rink.hasNets = true;
+        rink.iceCondition = "good";
+        rink.playerCapacity = 20;
+
+
+        
+            repo.add(rink);
+            
+        
+    });
+    
+
+  });
+
+  // const uuidv1 = require('uuid/v1');
+// const Rink = require("../Domain/Rink");
 // const request = require('request');
 // let key = "AIzaSyBZFAMef8RWEOzQ0zjaKUIDdOgVhAofLBI";
 // let query = "outdoor+rinks+Toronto";
@@ -42,7 +71,7 @@ Boostrapper.registerServices(Boostrapper.container);
 
 // request(path, function (error, response, body) {
 //     let rinks = JSON.parse(body).results;
-
+//     let array = [];
 //     rinks.forEach(function(elem) {
 //         let rink = new Rink(uuidv1());        
 //         rink.name = elem.name;
@@ -52,15 +81,19 @@ Boostrapper.registerServices(Boostrapper.container);
 //         rink.iceCondition = "good";
 //         rink.playerCapacity = 20;
 
+//         array.push(rink);
 
         
-//             repo.add(rink);
+//             //repo.add(rink);
             
         
 //     });
+//     console.log(array);
     
 
 //   });
+
+
 
 
 
